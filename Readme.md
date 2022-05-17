@@ -1,7 +1,7 @@
 # Личный проект «YetiCave»
 
 * Студент: [Ольга Маринина](https://up.htmlacademy.ru/php/14/user/2074903).
-* Наставник: `Неизвестно`.
+* Наставник: [Антон Попов](https://htmlacademy.ru/profile/joker).
 
 ---
 
