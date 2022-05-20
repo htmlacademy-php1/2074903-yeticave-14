@@ -52,8 +52,6 @@ $goods = [
     ]
 ];
 
-$update_price = translate_price($goods);
-
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -129,7 +127,7 @@ $update_price = translate_price($goods);
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= $good['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?= translate_price($good); ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
