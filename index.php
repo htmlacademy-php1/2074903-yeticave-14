@@ -13,7 +13,7 @@ $categories = [
     'other' => 'Разное'
 ];
 
-$goods = [
+$items = [
     [
         'name' => '2014 Rossignol District Snowboard',
         'category' => $categories['boards'],
@@ -116,18 +116,18 @@ $goods = [
             <h2>Открытые лоты</h2>
         </div>
         <ul class="lots__list">
-            <?php foreach ($goods as $good) : ?>
+            <?php foreach ($items as $item) : ?>
             <li class="lots__item lot">
                 <div class="lot__image">
-                    <img src="<?= $good['url_image']; ?>" width="350" height="260" alt="">
+                    <img src="<?= $item['url_image']; ?>" width="350" height="260" alt="">
                 </div>
                 <div class="lot__info">
-                    <span class="lot__category"><?= $good['category']; ?></span>
-                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $good['name']; ?></a></h3>
+                    <span class="lot__category"><?= $item['category']; ?></span>
+                    <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= $item['name']; ?></a></h3>
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?= translate_price($good); ?></span>
+                            <span class="lot__cost"><?= translate_price($item); ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
