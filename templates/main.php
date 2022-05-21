@@ -27,8 +27,12 @@
                         <span class="lot__amount">Стартовая цена</span>
                         <span class="lot__cost"><?= translate_price($item); ?></span>
                     </div>
-                    <div class="lot__timer timer">
-                        12:23
+                    <div class="lot__timer timer
+                    <?php if ((strtotime($item['expiry_date']) - strtotime(date('Y-m-d'))) <= 3600) : ?>
+                        timer--finishing
+                    <?php endif; ?>
+                        ">
+                        <?= count_time($item); ?>
                     </div>
                 </div>
             </div>
