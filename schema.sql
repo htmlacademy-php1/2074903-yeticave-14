@@ -18,7 +18,7 @@ CREATE TABLE users (
 CREATE TABLE categories (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255),
-    eng_name VARCHAR(255),
+    eng_name VARCHAR(255)
 );
 
 CREATE TABLE items (
@@ -35,7 +35,7 @@ CREATE TABLE items (
   winner_id INT,
   FOREIGN KEY (winner_id) REFERENCES users(id),
   category_id INT,
-  FOREIGN KEY (category_id) REFERENCES categories(id),
+  FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
 CREATE TABLE bets (
@@ -45,5 +45,8 @@ CREATE TABLE bets (
   user_id INT,
   FOREIGN KEY (user_id) REFERENCES users(id),
   item_id INT,
-  FOREIGN KEY (item_id) REFERENCES items(id),
-)
+  FOREIGN KEY (item_id) REFERENCES items(id)
+);
+
+CREATE INDEX c_name ON categories(name);
+CREATE INDEX i_name ON items(name);
