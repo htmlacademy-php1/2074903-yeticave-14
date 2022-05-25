@@ -1,7 +1,9 @@
 <?php
 
-require_once 'myfunction.php';
-require_once 'helpers.php';
+require_once 'functions/changers.php';
+require_once 'functions/helpers.php';
+require_once 'functions/statings.php';
+require_once 'functions/toMySQL.php';
 require_once 'init.php';
 
 $is_auth = rand(0, 1);
