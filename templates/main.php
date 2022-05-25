@@ -28,7 +28,7 @@
                         <span class="lot__cost"><?= translate_price($item); ?></span>
                     </div>
                     <div class="lot__timer timer
-                    <?php if ((strtotime($item['expiry_date']) - strtotime(date('Y-m-d'))) <= 3600) : ?>
+                    <?php if (is_expired($item)) : ?>
                         timer--finishing
                     <?php endif; ?>
                         ">
