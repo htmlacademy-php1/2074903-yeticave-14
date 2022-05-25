@@ -7,9 +7,9 @@
  *
  * @return string Update price
  */
-function translate_price($item)
+function changeFormatPrice(array $item)
 {
-    return number_format(ceil($item['price']), 0, '', ' ') . ' ₽';
+    return number_format(ceil($item['first_price']), 0, '', ' ') . ' ₽';
 }
 
 /**
@@ -19,10 +19,10 @@ function translate_price($item)
  *
  * @return int how much time exist
  */
-function count_time($item)
+function countLeftTime(array $item)
 {
-    $diff = strtotime($item['expiry_date']) - time();
-    $hours = floor($diff / 3600);
-    $minutes = floor(($diff - $hours * 3600) / 60);
-    return $hours . ':' . $minutes;
+    $diffToday = strtotime($item['expiry_date']) - time();
+    $leftHours = floor($diffToday / 3600);
+    $leftMinutes = floor(($diffToday - $leftHours * 3600) / 60);
+    return $leftHours . ':' . $leftMinutes;
 }

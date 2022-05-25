@@ -8,6 +8,6 @@ mysqli_set_charset($connect, 'utf8');
 
 if (!$connect) {
     $dbError = mysqli_connect_error();
-    $content = 'Ошибка подключения: ' . $dbError;
+    $page_content = 'Ошибка подключения: ' . $dbError;
 };
 

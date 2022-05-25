@@ -17,7 +17,8 @@ $categories = [
     'other' => 'Разное'
 ];
 
-$items = [
+$newItems = newItems($connect);
+/*$items = [
     [
         'name' => '2014 Rossignol District Snowboard',
         'category' => $categories['boards'],
@@ -60,13 +61,13 @@ $items = [
         'url_image' => 'img/lot-6.jpg',
         'expiry_date' => '2022-05-27'
     ]
-];
+];*/
 
 $page_content = include_template(
     'main.php',
     [
         'categories' => $categories,
-        'items' => $items
+        'items' => $newItems
     ]
 );
 
