@@ -6,21 +6,22 @@ require_once 'functions/statings.php';
 require_once 'functions/toMySQL.php';
 require_once 'init.php';
 
+$itemId = filter_input(INPUT_GET, 'itemId', FILTER_SANITIZE_NUMBER_INT);
+$selectedItem = selectedItem($connect, $itemId);
 $currentCategories = currentCategories($connect);
-$newItems = newItems($connect);
 
 $page_content = include_template(
-    'main.php',
+    'lot.php',
     [
         'categories' => $currentCategories,
-        'items' => $newItems
+        'item' => $selectedItem
     ]
 );
 
 $layout_content = include_template(
     'layout.php',
     [
-        'title' => 'Главная',
+        'title' => $selectedItem['name'],
         'is_auth' => $is_auth,
         'user_name' => $user_name,
         'content' => $page_content,
