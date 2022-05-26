@@ -46,12 +46,12 @@ function currentCategories(mysqli $connect)
 function selectedItem(mysqli $connect, int $itemId)
 {
     $takeSelectedItem = "SELECT i.id, i.name, first_price, image, DATE_FORMAT(expiry_date, '%d.%m.%Y') "
-                        . "as expiry_date, c.name as category, MAX(price) as price, step_bet "
+                        . "as expiry_date, c.name as category, MAX(price) as price, step_bet, description "
                         . "FROM items i "
                         . "LEFT JOIN bets b ON b.item_id = i.id "
                         . "JOIN categories c ON i.category_id = c.id "
                         . "WHERE i.id = $itemId "
                         . "GROUP BY i.id ";
     $selectedItem = mysqli_query($connect, $takeSelectedItem);
-    return isExistResult($currentCategories)[0];
+    return isExistResult($selectedItem)[0];
 }

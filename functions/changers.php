@@ -30,3 +30,20 @@ function countLeftTime(array $item)
     $leftMinutes = floor(($diffToday - $leftHours * 3600) / 60);
     return $leftHours . ':' . $leftMinutes;
 }
+
+/**
+ * Count min bet for current item
+ *
+ * @param array $item array of current item
+ *
+ * @return int min bet for current item
+ */
+function countMinBet(array $item)
+{
+    $currentPrice = $item['first_price'];
+    if (!empty($item['price'])) {
+        $currentPrice = $item['price'];
+    }
+    $minBet = $currentPrice + $item['step_bet'];
+    return number_format(ceil($minBet), 0, '', ' ') . ' ₽';
+}
