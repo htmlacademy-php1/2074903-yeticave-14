@@ -7,22 +7,23 @@ require_once 'functions/toMySQL.php';
 require_once 'init.php';
 
 $is_auth = rand(0, 1);
-$user_name = 'Olga'; // укажите здесь ваше имя
-$categories = [
+$user_name = 'Olga';
+$currentCategories = currentCategories($connect);
+/*$categories = [
     'boards' =>'Доски и лыжи',
     'attachment' => 'Крепления',
     'boots' => 'Ботинки',
     'clothing' => 'Одежда',
     'tools' => 'Инструменты',
     'other' => 'Разное'
-];
+];*/
 
 $newItems = newItems($connect);
 
 $page_content = include_template(
     'main.php',
     [
-        'categories' => $categories,
+        'categories' => $currentCategories,
         'items' => $newItems
     ]
 );
@@ -34,7 +35,7 @@ $layout_content = include_template(
         'is_auth' => $is_auth,
         'user_name' => $user_name,
         'content' => $page_content,
-        'categories' => $categories
+        'categories' => $currentCategories
     ]
 );
 

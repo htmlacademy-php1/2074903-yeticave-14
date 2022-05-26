@@ -15,5 +15,19 @@ function newItems(mysqli $connect)
                     . "WHERE expiry_date > CURRENT_TIMESTAMP "
                     . "ORDER BY expiry_date DESC";
     $newItems = mysqli_query($connect, $takeNewItems);
-    return isExistResult($newItems);;
+    return isExistResult($newItems);
+}
+
+/**
+ * Take the current categories
+ *
+ * @param mysqli $connect DB with an categories table
+ *
+ * @return array of current categories
+ */
+function currentCategories(mysqli $connect)
+{
+    $takeCurrentCategories = "SELECT * FROM categories";
+    $currentCategories = mysqli_query($connect, $takeCurrentCategories);
+    return isExistResult($currentCategories);
 }
