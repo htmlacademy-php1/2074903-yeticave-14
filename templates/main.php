@@ -24,7 +24,13 @@
                 <h3 class="lot__title"><a class="text-link" href="pages/lot.html"><?= htmlspecialchars($item['name']); ?></a></h3>
                 <div class="lot__state">
                     <div class="lot__rate">
-                        <span class="lot__amount">Стартовая цена</span>
+                        <span class="lot__amount">
+                            <?php if(empty($item['price'])) : ?>
+                                Стартовая цена
+                            <?php else : ?>
+                                <?= $item['amount_bets'] ?> ставок
+                            <?php endif; ?>
+                        </span>
                         <span class="lot__cost"><?= changeFormatPrice($item); ?></span>
                     </div>
                     <div class="lot__timer timer

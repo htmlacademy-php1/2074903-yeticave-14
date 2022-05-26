@@ -9,15 +9,6 @@ require_once 'init.php';
 $is_auth = rand(0, 1);
 $user_name = 'Olga';
 $currentCategories = currentCategories($connect);
-/*$categories = [
-    'boards' =>'Доски и лыжи',
-    'attachment' => 'Крепления',
-    'boots' => 'Ботинки',
-    'clothing' => 'Одежда',
-    'tools' => 'Инструменты',
-    'other' => 'Разное'
-];*/
-
 $newItems = newItems($connect);
 
 $page_content = include_template(

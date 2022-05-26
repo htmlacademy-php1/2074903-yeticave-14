@@ -9,7 +9,11 @@
  */
 function changeFormatPrice(array $item)
 {
-    return number_format(ceil($item['first_price']), 0, '', ' ') . ' ₽';
+    $showPrice = $item['first_price'];
+    if (!empty($item['price'])) {
+        $showPrice = $item['price'];
+    }
+    return number_format(ceil($showPrice), 0, '', ' ') . ' ₽';
 }
 
 /**
