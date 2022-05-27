@@ -10,8 +10,8 @@ $itemId = filter_input(INPUT_GET, 'itemId', FILTER_SANITIZE_NUMBER_INT);
 $selectedItem = selectedItem($connect, $itemId);
 $currentCategories = currentCategories($connect);
 
-$page_content = showErrorItemId($selectedItem);
-$title = showErrorItemId($selectedItem);
+$page_content = isErrorItemId($selectedItem);
+$title = isErrorItemId($selectedItem);
 if (empty($page_content)) {
     $title = $selectedItem[0]['name'];
     $page_content = include_template(

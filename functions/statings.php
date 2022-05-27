@@ -39,11 +39,26 @@ function isExistResult($result)
  *
  * @return string|null about error with code 404
  */
-function showErrorItemId($selectedItem)
+function isErrorItemId($selectedItem)
 {
     if (!$selectedItem) {
         http_response_code(404);
         return 'Ошибка 404. Страница, которую Вы ищете, не может быть найдена';
+    }
+    return null;
+}
+
+/**
+ * Show values just added to a form by a user in fields of a form
+ *
+ * @param $nameValue value name just added to a form
+ *
+ * @return string|null show this value in a field or null
+ */
+function isAddedValue($nameValue)
+{
+    if (!empty($name)) {
+        return filter_input(INPUT_POST, $name, FILTER_SANITIZE_SPECIAL_CHARS);
     }
     return null;
 }
