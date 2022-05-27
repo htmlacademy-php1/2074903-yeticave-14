@@ -4,7 +4,7 @@ require_once 'functions/changers.php';
 require_once 'functions/helpers.php';
 require_once 'functions/statings.php';
 require_once 'functions/toMySQL.php';
-require_once 'init.php';
+require_once 'private/init.php';
 
 $itemId = filter_input(INPUT_GET, 'itemId', FILTER_SANITIZE_NUMBER_INT);
 $selectedItem = selectedItem($connect, $itemId);

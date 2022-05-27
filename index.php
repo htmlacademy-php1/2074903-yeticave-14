@@ -4,7 +4,7 @@ require_once 'functions/changers.php';
 require_once 'functions/helpers.php';
 require_once 'functions/statings.php';
 require_once 'functions/toMySQL.php';
-require_once 'init.php';
+require_once 'private/init.php';
 
 $currentCategories = currentCategories($connect);
 $newItems = newItems($connect);

@@ -19,7 +19,7 @@ function isExpired($item)
 /**
  * Show exist the result of mysqli_query or we have a mistake
  *
- * @param mysqli $result response from our database to our request
+ * @param mysqli_result $result response from our database to our request
  *
  * @return array from DB
  */
