@@ -30,3 +30,20 @@ function isExistResult($result)
     }
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
+
+/**
+ * Show error if $itemId is empty or doesn't exist in the item table
+ *
+ * @param array $selectedItem the item which is selected by request ID,
+ * if $itemId is not exist $selectedItem will be null
+ *
+ * @return string|null about error with code 404
+ */
+function showErrorItemId($selectedItem)
+{
+    if (!$selectedItem) {
+        http_response_code(404);
+        return 'Ошибка 404. Страница, которую Вы ищете, не может быть найдена';
+    }
+    return null;
+}
