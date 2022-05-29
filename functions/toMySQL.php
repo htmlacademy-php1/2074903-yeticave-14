@@ -58,3 +58,20 @@ function selectedItem(mysqli $connect, $itemId)
     }
     return null;
 }
+
+/**
+ * Add to the items table new item
+ *
+ * @param mysqli $connect DB with an items table
+ * @param array $itemForm all valid data from item form
+ *
+ * @return mysqli_result $result response from DB to current request
+ */
+function addedItem($connect, array $itemForm)
+{
+    $addNewItem = "INSERT INTO items (dt_add, name, description, image, first_price, expiry_date, "
+            . "step_bet, author_id, winner_id, category_id) "
+            . "VALUES (NOW(), ?, ?, ?, ?, ?, ?, 1, null, ?)";
+    $bindDataItem = db_get_prepare_stmt($connect, $addNewItem, $itemForm);
+    return mysqli_stmt_execute($bindDataItem);
+}

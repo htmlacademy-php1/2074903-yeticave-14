@@ -19,7 +19,7 @@ function isExpired($item)
 /**
  * Show exist the result of mysqli_query or we have a mistake
  *
- * @param mysqli_result $result response from our database to our request
+ * @param mysqli_result $result response from DB to current request
  *
  * @return array from DB
  */
@@ -51,7 +51,7 @@ function isErrorItemId($selectedItem)
 /**
  * Show values just added to a form by a user in fields of a form
  *
- * @param $nameValue value name just added to a form
+ * @param mixed $nameValue value name just added to a form
  *
  * @return string|null show this value in a field or null
  */
@@ -61,4 +61,30 @@ function isAddedValue($nameValue)
         return filter_input(INPUT_POST, $name, FILTER_SANITIZE_SPECIAL_CHARS);
     }
     return null;
+}
+
+/**
+ * Show error when required field is empty in a form
+ *
+ * @param array $form all reqired field of current form
+ * @param array $rules to check current required fields
+ * @param array $required of current required fields in current form
+ *
+ * @return array|null $errors about empty required fields
+ */
+function isEmptyRequired(array $form, array $rules, array $required)
+{
+    foreach ($form as $key => $value) {
+        if (!empty($rules[$key])) {
+            $rule = $rules[$key];
+            $errors[$key] = $rule($value);
+        }
+        if (in_array($key, $required) and empty($value)) {
+            $errors[$key] = "Поле $key надо заполнить";
+        }
+        return $errors;
+    }
+    if (empty($errors)) {
+        return null;
+    }
 }
