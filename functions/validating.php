@@ -40,14 +40,13 @@ function isValidLength(string $value, int $min, int $max)
  * @param string $tmpImageName added image
  * @param int $maxImageSize our max size for upload files
  *
- * @return string|null about error
+ * @return string about error
  */
 function isValidImageSize(string $tmpImageName, int $maxImageSize)
 {
     if (filesize($tmpImageName) > $maxImageSize) {
         return 'Размер изображения превышает допустимый';
     }
-    return '';
 }
 
 /**
@@ -56,15 +55,15 @@ function isValidImageSize(string $tmpImageName, int $maxImageSize)
  *
  * @param string $tmpImageName added image
  *
- * @return string|null about error
+ * @return string about error
  */
 function isValidImageType(string $tmpImageName)
 {
-    $imageType = mime_content_type($tmpImageName);
-    if ($imageType !== "image/png" or $imageType !== "image/jpeg" or $imageType !== "image/jpg") {
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+	$imageType = finfo_file($finfo, $tmpImageName);
+    if ($imageType !== "image/png" and $imageType !== "image/jpeg" and $imageType !== "image/jpg") {
 		return'Загрузите картинку в формате PNG, JPEG или JPG';
 	}
-    return '';
 }
 
 /**

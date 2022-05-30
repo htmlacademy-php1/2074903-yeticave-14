@@ -56,8 +56,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errorsAddItems['image'] = "Необходимо добавить изображение";
     } else {
         $tmpImageName = $_FILES['image']['tmp_name'];
-        $errorsAddItems['image'] = isValidImage($tmpImageName, $maxImageSize);
+        if (!empty(isValidImage($tmpImageName, $maxImageSize))) {
+            $errorsAddItems['image'] = isValidImage($tmpImageName, $maxImageSize);
+        }
     }
+
+    var_dump($errorsAddItems);
 
     if (count($errorsAddItems)) {
         $page_content = include_template(
@@ -70,6 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $itemForm['image'] = insideImageName($tmpImageName);
         move_uploaded_file($tmpImageName, 'uploads/' . $itemForm['image']);
+        /*$itemForm['expiry_date'] = date('Y-m-d H:i:s', strtotime($itemForm['expiry_date']));*/
         $isAddedItem = addedItem($connect, $itemForm);
         if ($isAddedItem) {
             $itemId = mysqli_insert_id($connect);

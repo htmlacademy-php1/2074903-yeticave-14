@@ -57,8 +57,8 @@ function isErrorItemId($selectedItem)
  */
 function isAddedValue($nameValue)
 {
-    if (!empty($name)) {
-        return filter_input(INPUT_POST, $name, FILTER_SANITIZE_SPECIAL_CHARS);
+    if (!empty($nameValue)) {
+        return filter_input(INPUT_POST, $nameValue);
     }
     return null;
 }

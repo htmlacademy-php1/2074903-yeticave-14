@@ -13,7 +13,7 @@
         <?php $classInvalidField = !empty($errors['name']) ? "form__item--invalid" : ""; ?>
         <div class="form__item <?= $classInvalidField; ?>">
             <label for="name">Наименование <sup>*</sup></label>
-            <input id="name" type="text" name="name" placeholder="Введите наименование лота">
+            <input id="name" type="text" name="name" placeholder="Введите наименование лота" value="<?= isAddedValue('name'); ?>">
             <?php if (!empty($errors['name'])) : ?>
             <span class="form__error"><?= $errors['name']; ?></span>
             <?php endif; ?>
@@ -39,7 +39,7 @@
     <?php $classInvalidField = !empty($errors['description']) ? "form__item--invalid" : ""; ?>
     <div class="form__item form__item--wide <?= $classInvalidField; ?>">
         <label for="description">Описание <sup>*</sup></label>
-        <textarea id="description" name="description" placeholder="Напишите описание лота"></textarea>
+        <textarea id="description" name="description" placeholder="Напишите описание лота"><?= isAddedValue('description'); ?></textarea>
         <?php if (!empty($errors['description'])) : ?>
         <span class="form__error"><?= $errors['description']; ?></span>
         <?php endif; ?>
@@ -61,7 +61,7 @@
         <?php $classInvalidField = !empty($errors['first_price']) ? "form__item--invalid" : ""; ?>
         <div class="form__item form__item--small <?= $classInvalidField; ?>">
             <label for="first_price">Начальная цена <sup>*</sup></label>
-            <input id="first_price" type="text" name="first_price" placeholder="0">
+            <input id="first_price" type="text" name="first_price" placeholder="0" value="<?= isAddedValue('first_price'); ?>">
             <?php if (!empty($errors['first_price'])) : ?>
             <span class="form__error"><?= $errors['first_price']; ?></span>
             <?php endif; ?>
@@ -69,7 +69,7 @@
         <?php $classInvalidField = !empty($errors['step_bet']) ? "form__item--invalid" : ""; ?>
         <div class="form__item form__item--small">
             <label for="step_bet">Шаг ставки <sup>*</sup></label>
-            <input id="step_bet" type="text" name="step_bet" placeholder="0">
+            <input id="step_bet" type="text" name="step_bet" placeholder="0" value="<?= isAddedValue('step_bet'); ?>">
             <?php if (!empty($errors['step_bet'])) : ?>
             <span class="form__error"><?= $errors['step_bet']; ?></span>
             <?php endif; ?>
@@ -77,7 +77,7 @@
         <?php $classInvalidField = !empty($errors['expiry_date']) ? "form__item--invalid" : ""; ?>
         <div class="form__item">
             <label for="expiry_date">Дата окончания торгов <sup>*</sup></label>
-            <input class="form__input-date" id="expiry_date" type="text" name="expiry_date" placeholder="Введите дату в формате ГГГГ-ММ-ДД">
+            <input class="form__input-date" id="expiry_date" type="text" name="expiry_date" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="<?= isAddedValue('expiry_date'); ?>">
             <?php if (!empty($errors['expiry_date'])) : ?>
             <span class="form__error"><?= $errors['expiry_date']; ?></span>
             <?php endif; ?>

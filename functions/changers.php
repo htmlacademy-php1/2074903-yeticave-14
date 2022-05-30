@@ -57,7 +57,8 @@ function countMinBet(array $item)
  */
 function insideImageName(string $tmpImageName)
 {
-    $imageType = mime_content_type($tmpImageName);
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+	$imageType = finfo_file($finfo, $tmpImageName);
     $cutType = stristr($imageType, '/');
     $endPartName = substr($cutType, 1);
     return uniqid() . ".$endPartName";

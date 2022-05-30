@@ -69,9 +69,9 @@ function selectedItem(mysqli $connect, $itemId)
  */
 function addedItem($connect, array $itemForm)
 {
-    $addNewItem = "INSERT INTO items (dt_add, name, description, image, first_price, expiry_date, "
-            . "step_bet, author_id, winner_id, category_id) "
-            . "VALUES (NOW(), ?, ?, ?, ?, ?, ?, 1, null, ?)";
+    $addNewItem = "INSERT INTO items "
+                . "(dt_add, name, category_id, description, first_price, step_bet, expiry_date, author_id, winner_id, image) "
+                . "VALUES (NOW(), ?, ?, ?, ?, ?, ?, 1, null, ?)";
     $bindDataItem = db_get_prepare_stmt($connect, $addNewItem, $itemForm);
     return mysqli_stmt_execute($bindDataItem);
 }
