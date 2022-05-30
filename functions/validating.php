@@ -17,15 +17,15 @@ function isValidCategory(int $categoryId, array $allowedList)
 }
 
 /**
- * Check the string to have legth between our bourders
+ * Check the string to have length between set bourders
  *
- * @param string $value our checked string
+ * @param string $value checked string
  * @param int $min min number of symbols
  * @param int $max max number of symbols
  *
  * @return string|null about error
  */
-function isValidLeght(string $value, int $min, int $max)
+function isValidLength(string $value, int $min, int $max)
 {
     $length = strlen($value);
     if ($length < $min or $length > $max) {
@@ -37,52 +37,51 @@ function isValidLeght(string $value, int $min, int $max)
 /**
  * Check size of upload image
  *
- * @param string $name - our image
+ * @param string $tmpImageName added image
  * @param int $maxImageSize our max size for upload files
  *
  * @return string|null about error
  */
-function isValidImageSize(string $name, int $maxImageSize)
+function isValidImageSize(string $tmpImageName, int $maxImageSize)
 {
-    if (filesize($name) > $maxImageSize) {
+    if (filesize($tmpImageName) > $maxImageSize) {
         return 'Размер изображения превышает допустимый';
     }
-    return null;
+    return '';
 }
 
 /**
  * Check type of upload image
  *
- * @param string $type - type of added image
+ *
+ * @param string $tmpImageName added image
  *
  * @return string|null about error
  */
-function isValidImageType(string $type)
+function isValidImageType(string $tmpImageName)
 {
-    if ($type !== "image/png" or $type !== "image/jpeg" or $type !== "image/jpg") {
+    $imageType = mime_content_type($tmpImageName);
+    if ($imageType !== "image/png" or $imageType !== "image/jpeg" or $imageType !== "image/jpg") {
 		return'Загрузите картинку в формате PNG, JPEG или JPG';
 	}
-    return null;
+    return '';
 }
 
 /**
  * Common check added current image in item form
  *
- * @param string $name - our image
+ * @param string $tmpImageName added image
  * @param int $maxImageSize our max size for upload files
- * @param string $type - type of added image
  *
  * @return string|null about error
  */
-function isValidImage(string $name, int $maxImageSize, string $type)
+function isValidImage(string $tmpImageName, int $maxImageSize)
 {
-    if (!empty(isValidImageSize($name, $maxImageSize))) {
-        return isValidImageSize($name, $maxImageSize);
-    } elseif (!empty(isValidImageType($type))) {
-        return isValidImageType($type);
-    } else {
-        return null;
+    $error = isValidImageSize($tmpImageName, $maxImageSize);
+    if (empty($error)) {
+        $error = isValidImageType($tmpImageName);
     }
+    return $error;
 }
 
 /**
@@ -110,11 +109,11 @@ function isValidPrice(int $value)
 function isValidDate($date)
 {
     if (!is_date_valid($date)) {
-        return 'Указан неверный формат даты';
+        return 'Указан неверный формат даты, укажите в формате ГГГГ-ММ-ДД';
     }
     $dateToday = date('Y-m-d', strtotime("now"));
     if ($date <= $dateToday) {
-        return 'Указана устаревшая дата';
+        return 'Указана устаревшая дата, дата должна быть больше текущей хотя бы на 1 день';
     }
     return null;
 }

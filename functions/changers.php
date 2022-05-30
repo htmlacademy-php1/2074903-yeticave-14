@@ -49,32 +49,16 @@ function countMinBet(array $item)
 }
 
 /**
- * Translate user image name to inside random name
- *
- * @param array $_FILES with current image
- *
- * @return string|null of new image name
- */
-function newNameImage($_FILES)
-{
-    if (!empty($_FILES['file']['name'])) {
-        $newNameImage = $_FILES['file']['tmp_name'];
-        return $newNameImage;
-    }
-    return null;
-}
-
-/**
  * Form input image to common array of added item
  *
- * @param string $imageType of current image
+ * @param string $tmpImageName added image
  *
  * @return string inside unique name of current image
  */
-function insideImageName(string $imageType)
+function insideImageName(string $tmpImageName)
 {
+    $imageType = mime_content_type($tmpImageName);
     $cutType = stristr($imageType, '/');
     $endPartName = substr($cutType, 1);
-    $insideImageName = uniqid() . ".$endPartName";
-    return $insideImageName;
+    return uniqid() . ".$endPartName";
 }
