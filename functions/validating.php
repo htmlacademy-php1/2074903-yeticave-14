@@ -90,7 +90,7 @@ function isValidImage(string $tmpImageName, int $maxImageSize)
  *
  * @return string|null about error
  */
-function isValidPrice(int $value)
+function isValidPrice($value)
 {
     if (intval($value) <= 0) {
         return 'Начальная цена должна быть больше нуля';

@@ -82,8 +82,8 @@ function isEmptyRequired(array $form, array $rules, array $required)
         if (in_array($key, $required) and empty($value)) {
             $errors[$key] = "Поле $key надо заполнить";
         }
-        return $errors;
     }
+    return $errors;
     if (empty($errors)) {
         return null;
     }

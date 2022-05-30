@@ -72,9 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]
         );
     } else {
-        $itemForm['image'] = insideImageName($tmpImageName);
-        move_uploaded_file($tmpImageName, 'uploads/' . $itemForm['image']);
-        /*$itemForm['expiry_date'] = date('Y-m-d H:i:s', strtotime($itemForm['expiry_date']));*/
+        move_uploaded_file($tmpImageName, 'uploads/' . insideImageName($tmpImageName));
+        $itemForm['image'] = 'uploads/'.insideImageName($tmpImageName);
         $isAddedItem = addedItem($connect, $itemForm);
         if ($isAddedItem) {
             $itemId = mysqli_insert_id($connect);

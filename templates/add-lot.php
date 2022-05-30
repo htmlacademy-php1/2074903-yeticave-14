@@ -67,7 +67,7 @@
             <?php endif; ?>
         </div>
         <?php $classInvalidField = !empty($errors['step_bet']) ? "form__item--invalid" : ""; ?>
-        <div class="form__item form__item--small">
+        <div class="form__item form__item--small <?= $classInvalidField; ?>">
             <label for="step_bet">Шаг ставки <sup>*</sup></label>
             <input id="step_bet" type="text" name="step_bet" placeholder="0" value="<?= isAddedValue('step_bet'); ?>">
             <?php if (!empty($errors['step_bet'])) : ?>
@@ -75,7 +75,7 @@
             <?php endif; ?>
         </div>
         <?php $classInvalidField = !empty($errors['expiry_date']) ? "form__item--invalid" : ""; ?>
-        <div class="form__item">
+        <div class="form__item <?= $classInvalidField; ?>">
             <label for="expiry_date">Дата окончания торгов <sup>*</sup></label>
             <input class="form__input-date" id="expiry_date" type="text" name="expiry_date" placeholder="Введите дату в формате ГГГГ-ММ-ДД" value="<?= isAddedValue('expiry_date'); ?>">
             <?php if (!empty($errors['expiry_date'])) : ?>
