@@ -7,33 +7,36 @@ require_once 'functions/toMySQL.php';
 require_once 'private/init.php';
 
 $currentCategories = currentCategories($connect);
+$categoriesIds = array_column($currentCategories, 'id');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $requiredFields = [
         'name', 'category_id', 'description', 'image', 'first_price', 'step_bet', 'expiry_date'
     ];
     $errorsAddItems = [];
+    $imageName = newNameImage($_FILES);
+    $imageType = imageType($_FILES, $imageName);
     $rulesAddItem = [
-        'name' => function () {
-            return validate();
+        'name' => function ($value) use ($minName, $maxName) {
+            return isValidLeght($value, $minName, $maxName);
         },
-        'category_id' => function () {
-            return validate();
+        'category_id' => function ($value) use ($categoriesIds) {
+            return isValidCategory($value, $categoriesIds);
         },
-        'description' => function () {
-            return ;
+        'description' => function ($value) use ($minDescription, $maxDescriotion) {
+            return isValidLeght($value, $minDescription, $maxDescriotion);
         },
-        'image' => function () {
-            return ;
+        'image' => function ($imageName) use ($maxImageSize, $imageType) {
+            return isValidImage($imageName, $maxImageSize, $imageType);
         },
-        'first_price' => function () {
-            return ;
+        'first_price' => function ($value) {
+            return isValidPrice($value);
         },
-        'step_bet' => function () {
-            return ;
+        'step_bet' => function ($value) {
+            return isValidPrice($value);
         },
-        'expiry_date' => function () {
-            return ;
+        'expiry_date' => function ($value) {
+            return isValidDate($value);
         }
     ];
 
@@ -63,6 +66,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]
         );
     } else {
+        $itemForm['image'] = insideImageName($imageType);
+        move_uploaded_file($imageName, 'uploads/' . $itemForm['image']);
         $isAddedItem = addedItem($connect, $itemForm);
         if ($isAddedItem) {
             $itemId = mysqli_insert_id($connect);

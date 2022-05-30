@@ -88,3 +88,21 @@ function isEmptyRequired(array $form, array $rules, array $required)
         return null;
     }
 }
+
+/**
+ * Take current tyoe of added image from item form
+ *
+ * @param array $_FILES with current image
+ * @param string $imageName translated name
+ *
+ * @return string|null $imageType current type of added image
+ */
+function imageType($_FILES, $imageName)
+{
+    if (!empty($_FILES['file']['name'])) {
+        $imageInfo = finfo_open(FILEINFO_MIME_TYPE);
+	    $imageType = finfo_file($imageInfo, $imageName);
+        return $imageType;
+    }
+    return null;
+}
