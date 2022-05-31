@@ -70,8 +70,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ]
         );
     } else {
-        move_uploaded_file($tmpImageName, 'uploads/' . insideImageName($tmpImageName));
-        $itemForm['image'] = 'uploads/'.insideImageName($tmpImageName);
+        $insideImageName = insideImageName($tmpImageName);
+        move_uploaded_file($tmpImageName, 'uploads/' . $insideImageName);
+        $itemForm['image'] = 'uploads/'.$insideImageName;
         $isAddedItem = addedItem($connect, $itemForm);
         if ($isAddedItem) {
             $itemId = mysqli_insert_id($connect);
