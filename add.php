@@ -61,8 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    var_dump($errorsAddItems);
-
     if (count($errorsAddItems)) {
         $page_content = include_template(
             'add-lot.php',

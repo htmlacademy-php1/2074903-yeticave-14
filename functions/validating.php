@@ -92,10 +92,13 @@ function isValidImage(string $tmpImageName, int $maxImageSize)
  */
 function isValidPrice($value)
 {
-    if (intval($value) <= 0) {
+    if (!filter_var($value, FILTER_VALIDATE_INT)) {
+        return 'Цена должна быть целым числом';
+    } elseif ($value <= 0) {
         return 'Начальная цена должна быть больше нуля';
+    } else {
+        return null;
     }
-    return null;
 }
 
 /**
